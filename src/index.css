@@ -30,6 +30,13 @@ font-size: 30px;
 .cursor{
    cursor: pointer;
 }
+.loading-icon-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 450px;
+    width: 100%;
+}
 @media screen and (max-width : 530px) and (min-width:0px) {
     .font-title {
         
