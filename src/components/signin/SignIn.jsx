@@ -151,7 +151,7 @@ const SignIn = () => {
       <label for="agreetocheckbox">Remember Me</label>
     </div>
 
-    <div onClick={()=>{userLogin()}} style={{opacity:`${isLoginFieldEmpty && isValidEmail ? '1' : '0.3'}`}} className={`${isLoginFieldEmpty && isValidEmail ? 'signup-auth-button cursor' : 'signup-auth-button'}`} >Login</div>
+    <button disabled={!isValidEmail} onClick={()=>{userLogin()}} style={{opacity:`${isLoginFieldEmpty && isValidEmail ? '1' : '0.3'}`}} className={`${isLoginFieldEmpty && isValidEmail ? 'signup-auth-button cursor' : 'signup-auth-button'}`} >Login</button>
 
       {isLoading ? (<div className='loading-icon-box'>
         <img style={{ width: '30px', height: '30px' }} src={loadingIcon} />

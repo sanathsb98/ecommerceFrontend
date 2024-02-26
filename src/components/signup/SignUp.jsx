@@ -181,7 +181,7 @@ const SignUp = () => {
         <label for="agreetocheckbox">I agree to the <b className='terms-conditions'>Terms & Conditions</b></label>
       </div>
 
-      <button onClick={()=>UserSignUp()} disabled = {!isAllFieldsFilled} style={{opacity:`${isAllFieldsFilled && isValidEmail ? '1' : '0.3'}`}} className={`${isAllFieldsFilled && isValidEmail ? 'signup-auth-button cursor' : 'signup-auth-button'}`}>Signup</button>
+      <button onClick={()=>UserSignUp()} disabled = {!isAllFieldsFilled} style={{opacity:`${isAllFieldsFilled && isValidEmail ? '1' : '0.3 '}`}} className={`${isAllFieldsFilled && isValidEmail ? 'signup-auth-button cursor' : 'signup-auth-button'}`}>Signup</button>
 
       {isLoading ? (<div className='loading-icon-box'>
         <img style={{ width: '30px', height: '30px' }} src={loadingIcon} />
