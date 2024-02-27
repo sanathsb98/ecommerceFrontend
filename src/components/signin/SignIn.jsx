@@ -32,6 +32,8 @@ const SignIn = () => {
 
   const userLogin = async () => {
 
+   
+
     const data = {
       email: loginInfo.email,
       password: loginInfo.password
@@ -66,11 +68,12 @@ const SignIn = () => {
 
       //checking if the token is vaild or expired
       const tokenResponse = await fetch("https://ecommerce-backend-eight-azure.vercel.app/api/data", {
-        method: 'GET',
+        method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         },
-        body:JSON.stringify(loginInfo.email)
+        body:JSON.stringify({email : loginInfo.email})
       })
       const tokenStatus = await tokenResponse.json()
 
