@@ -7,7 +7,7 @@ import loadingIcon from '/src/images/loadingicon.gif';
 const SignIn = () => {
 
   const [isLoading, setIsLoading] = useState(false)
-  const [loginStatus, setLoginStatus] = useState({ message: '' })
+  const [loginStatus, setLoginStatus] = useState({ message: '' ,token:''})
 
   var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -48,22 +48,44 @@ const SignIn = () => {
       })
 
       if (!response) {
-     
-        throw new Error('cant get login details')
         setIsLoading(false)
+        throw new Error('cant get login details')
+        
       }
 
       // getting and setting the logged user deatils in a state:
-
       const loginDetails = await response.json()
       setLoginStatus(loginDetails)
       console.log("login details:", loginDetails)
-      setIsLoading(false)
 
+    //storing the token:
+     localStorage.setItem('token',loginDetails.token)
+     const token = localStorage.getItem('token')
+     console.log(token)
+    
+
+      //checking if the token is vaild or expired
+      const tokenResponse = await fetch("https://ecommerce-backend-eight-azure.vercel.app/api/data", {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body:JSON.stringify(loginInfo.email)
+      })
+      const tokenStatus = await tokenResponse.json()
+
+      if (!tokenResponse) {
+        console.log('invalid token')
+      } else {
+        console.log(tokenStatus)
+      }
+
+      setIsLoading(false)
     }
+
     catch (err) {
       console.log(err)
-      setIsWrongPassword(true)
+     
       setIsLoading(false)
     }
   }
