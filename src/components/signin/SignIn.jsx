@@ -3,7 +3,7 @@ import '../signin/SignIn.css';
 import { useDispatch } from 'react-redux';
 import { registerState } from '../../features/registerSlice';
 import loadingIcon from '/src/images/loadingicon.gif';
-
+import { Navigate } from 'react-router-dom';
 
 const SignIn = () => {
 
@@ -18,6 +18,7 @@ const SignIn = () => {
   })
 
   useEffect(() => {
+  
     setIsLoading(false)
   }, [])
 
@@ -31,9 +32,11 @@ const SignIn = () => {
 
   const isLoginFieldEmpty = Object.values(loginInfo).every((value) => value != '')
 
+
+
   const userLogin = async () => {
 
-   
+   localStorage.setItem('loggedInEmail',loginInfo.email)
 
     const data = {
       email: loginInfo.email,
@@ -41,6 +44,7 @@ const SignIn = () => {
     }
 
     try {
+      
       setIsLoading(true)
       const response = await fetch("https://ecommerce-backend-eight-azure.vercel.app/api/signin", {
         method: 'POST',
@@ -66,7 +70,6 @@ const SignIn = () => {
      const token = localStorage.getItem('token')
      console.log(token)
     
-
       //checking if the token is vaild or expired
       const tokenResponse = await fetch("https://ecommerce-backend-eight-azure.vercel.app/api/data", {
         method: 'POST',
@@ -74,26 +77,30 @@ const SignIn = () => {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify({email : loginInfo.email})
+        body: JSON.stringify({ email: loginInfo.email })
       })
       const tokenStatus = await tokenResponse.json()
 
-      if (!tokenResponse) {
+      if (!tokenStatus) {
         console.log('invalid token')
-        
       } else {
-        console.log(tokenStatus)
+        redirectToHomePage()
+     
       }
-
       setIsLoading(false)
+      
     }
-
     catch (err) {
       console.log(err)
-     
       setIsLoading(false)
     }
   }
+
+
+
+
+
+
 
   const dispatch = useDispatch()
 
@@ -101,6 +108,14 @@ const SignIn = () => {
     console.log(status)
     dispatch(registerState({ status: status }))
   }
+
+ 
+  const redirectToHomePage = () => {
+ 
+   window.location.href = "home"
+  };
+
+ 
 
   return (
     <div className='signup-container'>
