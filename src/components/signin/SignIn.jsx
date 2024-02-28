@@ -4,11 +4,14 @@ import { useDispatch } from 'react-redux';
 import { registerState } from '../../features/registerSlice';
 import loadingIcon from '/src/images/loadingicon.gif';
 import { useNavigate } from 'react-router-dom';
+import { changeLoggedStatus } from '../../features/loggedSlice';
+
 
 const SignIn = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [loginStatus, setLoginStatus] = useState({ message: '' ,token:''})
+ 
 
   const navigate = useNavigate()
 
@@ -57,8 +60,10 @@ const SignIn = () => {
       })
 
       if (!response) {
+   
+        dispatch(changeLoggedStatus({logged:false}))
         setIsLoading(false)
-        localStorage.setItem('logged',false)
+    
         throw new Error('cant get login details')
         
       } else {
@@ -66,17 +71,18 @@ const SignIn = () => {
         const loginDetails = await response.json()
         setLoginStatus(loginDetails)
         console.log("login details:", loginDetails)
-
+     
         //storing the token:
         localStorage.setItem('token', loginDetails.token)
-        localStorage.setItem('logged',true)
+    
 
         setIsLoading(false)
 
         //if valid token in response navigate to home:
         if('token' in loginDetails){
- 
-        navigate("/home")
+        
+          dispatch(changeLoggedStatus({logged:true}))
+          navigate("/home")
         }
       }
 
