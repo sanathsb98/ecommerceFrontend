@@ -58,7 +58,7 @@ const SignIn = () => {
 
       if (!response) {
         setIsLoading(false)
-        localStorage.setItem('logged', false)
+    
         throw new Error('cant get login details')
         
       } else {
@@ -74,7 +74,7 @@ const SignIn = () => {
 
         //if valid token in response navigate to home:
         if('token' in loginDetails){
-        localStorage.setItem('logged', true)
+ 
         navigate("/home")
         }
       }

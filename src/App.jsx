@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import SignUpSignIn from './pages/signupsignin/SignUpSignIn';
 import Home from './pages/home/Home';
-import ProtectedRoute from './auth/ProtectedRoute';
+
 
 
 function App() {
@@ -14,9 +14,7 @@ function App() {
     <Router>
     <Routes>
       <Route path='/' element={<SignUpSignIn/>}/>
-      <Route element={<ProtectedRoute/>}>
       <Route path='/home' element={<Home/>}/>
-      </Route>
     </Routes>
     </Router>
     </>

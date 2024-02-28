@@ -1,15 +1,14 @@
 import React,{useEffect} from 'react';
 import '../home/Home.jsx';
-import { checkTokenValidity } from '../../auth/tokenValidity.js';
+import '../home/Home.css'
+
 
 const Home = () => {
 
-  useEffect(()=>{
-  checkTokenValidity()
-  },[])
+
   
   return (
-    <div>Home</div>
+    <div className='home-page'>Home</div>
   )
 }
 
