@@ -58,7 +58,7 @@ const SignIn = () => {
 
       if (!response) {
         setIsLoading(false)
-    
+        localStorage.setItem('logged',false)
         throw new Error('cant get login details')
         
       } else {
@@ -69,6 +69,7 @@ const SignIn = () => {
 
         //storing the token:
         localStorage.setItem('token', loginDetails.token)
+        localStorage.setItem('logged',true)
 
         setIsLoading(false)
 
