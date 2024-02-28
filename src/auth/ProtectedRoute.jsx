@@ -4,7 +4,10 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const ProtectedRoute = () => {
 
+  const logged = localStorage.getItem('logged')
     const token = localStorage.getItem('token')
+
+    console.log('logged',logged)
 
     const authUser = () => {
         const user = {login:true}
@@ -13,7 +16,7 @@ const ProtectedRoute = () => {
 
     const isAuth = authUser()
 
-  return isAuth ? <Outlet/> : <Navigate to="/"/>
+  return logged ? <Outlet/> : <Navigate to="/"/>
 }
 
 export default ProtectedRoute

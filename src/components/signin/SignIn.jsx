@@ -3,12 +3,14 @@ import '../signin/SignIn.css';
 import { useDispatch } from 'react-redux';
 import { registerState } from '../../features/registerSlice';
 import loadingIcon from '/src/images/loadingicon.gif';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [loginStatus, setLoginStatus] = useState({ message: '' ,token:''})
+
+  const navigate = useNavigate()
 
   var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -16,6 +18,8 @@ const SignIn = () => {
     email: '',
     password: '',
   })
+
+  localStorage.setItem('loggedInEmail',loginInfo.email)
 
   useEffect(() => {
   
@@ -36,8 +40,6 @@ const SignIn = () => {
 
   const userLogin = async () => {
 
-   localStorage.setItem('loggedInEmail',loginInfo.email)
-
     const data = {
       email: loginInfo.email,
       password: loginInfo.password
@@ -56,38 +58,28 @@ const SignIn = () => {
 
       if (!response) {
         setIsLoading(false)
+        localStorage.setItem('logged', false)
         throw new Error('cant get login details')
         
-      }
-
-      // getting and setting the logged user deatils in a state:
-      const loginDetails = await response.json()
-      setLoginStatus(loginDetails)
-      console.log("login details:", loginDetails)
-
-    //storing the token:
-     localStorage.setItem('token',loginDetails.token)
-     const token = localStorage.getItem('token')
-     console.log(token)
-    
-      //checking if the token is vaild or expired
-      const tokenResponse = await fetch("https://ecommerce-backend-eight-azure.vercel.app/api/data", {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: loginInfo.email })
-      })
-      const tokenStatus = await tokenResponse.json()
-
-      if (!tokenStatus) {
-        console.log('invalid token')
       } else {
-        redirectToHomePage()
-     
+        // getting and setting the logged user deatils in a state:
+        const loginDetails = await response.json()
+        setLoginStatus(loginDetails)
+        console.log("login details:", loginDetails)
+
+        //storing the token:
+        localStorage.setItem('token', loginDetails.token)
+
+        setIsLoading(false)
+
+        //if valid token in response navigate to home:
+        if('token' in loginDetails){
+        localStorage.setItem('logged', true)
+        navigate("/home")
+        }
       }
-      setIsLoading(false)
+
+     
       
     }
     catch (err) {
