@@ -1,50 +1,35 @@
-import { useState ,useEffect} from 'react';
-import './App.css';
-import {BrowserRouter as Router,Routes,Route, useNavigate} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import SignUpSignIn from './pages/signupsignin/SignUpSignIn';
 import Home from './pages/home/Home';
 import { useSelector } from 'react-redux';
 
-
-
-
-function App () {
-
-  const logged = useSelector((store)=>store.loggedStatus.logged)
-
-
-
+function App() {
+ 
   return (
-    <>
     <Router>
-    <Routes>
-      <Route path='/' element={<SignUpSignIn/>}/>
-      <Route path='/home' element={
-        <ProtectedRoute user={logged}>
-          <Home/>
-        </ProtectedRoute>
-      }/>
-    </Routes>
+      <Routes>
+        <Route path='/' element={<SignUpSignIn />} />
+        <Route path='/home' element={<ProtectedRoute><Home /></ProtectedRoute>} />
+      </Routes>
     </Router>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
 
-
-//protected routes:
-export const ProtectedRoute = ({ user, children }) => {
-  console.log(user)
-  
+export const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   useEffect(() => {
- 
-    if (!user) {
+    if (!token) {
       navigate('/');
     }
-  }, [user, navigate]);
+  }, [token, navigate]);
 
-  return user ? children : null;
+  // You might want to add additional token validation logic here
+
+  // Render children only if token is valid
+  return token ? children : null;
 };
