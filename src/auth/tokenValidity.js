@@ -1,8 +1,13 @@
 // tokenUtils.js
-export const checkTokenValidity = async () => {
+
+
+
+export const checkTokenValidity = async (navigate) => {
+
   const email = localStorage.getItem('loggedInEmail');
   const token = localStorage.getItem('token');
-  
+
+
   if (token) {
     try {
       const response = await fetch("https://ecommerce-backend-eight-azure.vercel.app/api/data", {
@@ -16,17 +21,15 @@ export const checkTokenValidity = async () => {
 
       if (!response.ok) {
         // Token is invalid or expired, redirect to sign-in page
-        redirectToSignInPage();
-      } 
+        navigate('/')
+
+      }
     } catch (err) {
       console.log(err);
     }
   } else {
     // Token doesn't exist, redirect to sign-in page
-    redirectToSignInPage();
+    navigate('/')
   }
 };
 
-export const redirectToSignInPage = () => {
-  window.location.href = "/";
-};

@@ -10,8 +10,8 @@ import { changeLoggedStatus } from '../../features/loggedSlice';
 const SignIn = () => {
 
   const [isLoading, setIsLoading] = useState(false)
-  const [loginStatus, setLoginStatus] = useState({ message: '' ,token:''})
- 
+  const [loginStatus, setLoginStatus] = useState({ message: '', token: '' })
+
 
   const navigate = useNavigate()
 
@@ -22,12 +22,12 @@ const SignIn = () => {
     password: '',
   })
 
-  localStorage.setItem('loggedInEmail',loginInfo.email)
+  localStorage.setItem('loggedInEmail', loginInfo.email)
 
   useEffect(() => {
-  
     setIsLoading(false)
   }, [])
+
 
   const isValidEmail = emailPattern.test(loginInfo.email)
 
@@ -39,17 +39,13 @@ const SignIn = () => {
 
   const isLoginFieldEmpty = Object.values(loginInfo).every((value) => value != '')
 
-
-
   const userLogin = async () => {
-
     const data = {
       email: loginInfo.email,
       password: loginInfo.password
     }
 
     try {
-      
       setIsLoading(true)
       const response = await fetch("https://ecommerce-backend-eight-azure.vercel.app/api/signin", {
         method: 'POST',
@@ -60,34 +56,27 @@ const SignIn = () => {
       })
 
       if (!response) {
-   
-        dispatch(changeLoggedStatus({logged:false}))
+        dispatch(changeLoggedStatus({ logged: false }))
         setIsLoading(false)
-    
         throw new Error('cant get login details')
-        
+
       } else {
         // getting and setting the logged user deatils in a state:
         const loginDetails = await response.json()
         setLoginStatus(loginDetails)
         console.log("login details:", loginDetails)
-     
+
         //storing the token:
         localStorage.setItem('token', loginDetails.token)
-    
-
-        setIsLoading(false)
 
         //if valid token in response navigate to home:
-        if('token' in loginDetails){
-        
-          dispatch(changeLoggedStatus({logged:true}))
+        if ('token' in loginDetails) {
+          dispatch(changeLoggedStatus({ logged: true }))
+          setIsLoading(false)
           navigate("/home")
+
         }
       }
-
-     
-      
     }
     catch (err) {
       console.log(err)
@@ -95,26 +84,12 @@ const SignIn = () => {
     }
   }
 
-
-
-
-
-
-
   const dispatch = useDispatch()
 
   const changeLoginStatus = (status) => {
     console.log(status)
     dispatch(registerState({ status: status }))
   }
-
- 
-  const redirectToHomePage = () => {
- 
-   window.location.href = "home"
-  };
-
- 
 
   return (
     <div className='signup-container'>
