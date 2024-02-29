@@ -48,7 +48,9 @@ const SignIn = () => {
   const changeRememberMeStatus = () => {
     const newRememberMe = !rememberMe;
     setRememberMe(newRememberMe);
+
     localStorage.setItem('rememberMeStatus', JSON.stringify(newRememberMe));
+    
     Cookies.set('loggedInUser', loginInfo.email, { expires: 7 });
     if (!newRememberMe) {
       // If remember me is unchecked, clear the email from local storage
@@ -68,7 +70,7 @@ const SignIn = () => {
   }
 
   const isLoginFieldEmpty = Object.values(loginInfo).every((value) => value !== '')
-  
+
   const userLogin = async () => {
     const data = {
       email: loginInfo.email,
