@@ -20,13 +20,13 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-position-y: top;
+    /* background-position-y: top; */
 }
 .signupimage{
-    background-image: url(/src/images/signupimg.png);
+    background-image: url(/src/images/signupimg.jpg);
 }
 .signinimage{
-    background-image: url(/src/images/signinimg.png);
+    background-image: url(/src/images/signinimg.jpg);
 }
 .signupsignin-auth-container{
     /* background-color: rgb(146, 146, 82); */

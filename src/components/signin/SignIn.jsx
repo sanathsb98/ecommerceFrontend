@@ -5,13 +5,14 @@ import { registerState } from '../../features/registerSlice';
 import loadingIcon from '/src/images/loadingicon.gif';
 import { useNavigate } from 'react-router-dom';
 import { changeLoggedStatus } from '../../features/loggedSlice';
+import Cookies from 'js-cookie';
 
 
 const SignIn = () => {
 
   const [isLoading, setIsLoading] = useState(false)
   const [loginStatus, setLoginStatus] = useState({ message: '', token: '' })
-
+  const [rememberMe, setRememberMe] = useState(false) // Initialize with false
 
   const navigate = useNavigate()
 
@@ -22,13 +23,42 @@ const SignIn = () => {
     password: '',
   })
 
-  localStorage.setItem('loggedInEmail', loginInfo.email)
+  // Function to perform automatic login if cookies are present
+  const autoLoginIfCookiesPresent = () => {
+    const loggedInUser = Cookies.get('loggedInUser');
+    const token = localStorage.getItem('token');
+    if (loggedInUser && token) {
+      dispatch(changeLoggedStatus({ logged: true }));
+      navigate('/home');
+    }
+  };
 
   useEffect(() => {
+    autoLoginIfCookiesPresent();
     setIsLoading(false)
   }, [])
 
+  useEffect(() => {
+    const rememberMeStatus = localStorage.getItem('rememberMeStatus');
+    if (rememberMeStatus !== null) {
+      setRememberMe(JSON.parse(rememberMeStatus));
+    }
+  }, []);
 
+  const changeRememberMeStatus = () => {
+    const newRememberMe = !rememberMe;
+    setRememberMe(newRememberMe);
+    localStorage.setItem('rememberMeStatus', JSON.stringify(newRememberMe));
+    Cookies.set('loggedInUser', loginInfo.email, { expires: 7 });
+    if (!newRememberMe) {
+      // If remember me is unchecked, clear the email from local storage
+      localStorage.removeItem('loggedInEmail');
+      Cookies.remove('loggedInUser');
+    }
+  }
+
+  const rememberMeStatus = localStorage.getItem('rememberMeStatus')
+  console.log(rememberMeStatus)
   const isValidEmail = emailPattern.test(loginInfo.email)
 
   const getLoginInfo = (event) => {
@@ -37,8 +67,8 @@ const SignIn = () => {
     console.log(loginInfo)
   }
 
-  const isLoginFieldEmpty = Object.values(loginInfo).every((value) => value != '')
-
+  const isLoginFieldEmpty = Object.values(loginInfo).every((value) => value !== '')
+  
   const userLogin = async () => {
     const data = {
       email: loginInfo.email,
@@ -74,7 +104,6 @@ const SignIn = () => {
           dispatch(changeLoggedStatus({ logged: true }))
           setIsLoading(false)
           navigate("/home")
-
         }
       }
     }
@@ -114,14 +143,14 @@ const SignIn = () => {
       </div>
 
       <div className='signup-auth-checkbox'>
-        <input type='checkbox' id='agreetocheckbox' />
-        <label for="agreetocheckbox">Remember Me</label>
+        <input checked={rememberMe} onChange={changeRememberMeStatus} type='checkbox' id='agreetocheckbox' />
+        <label htmlFor="agreetocheckbox">Remember Me</label>
       </div>
 
-      <button disabled={!isValidEmail} onClick={() => { userLogin() }} style={{ opacity: `${isLoginFieldEmpty && isValidEmail ? '1' : '0.3'}` }} className={`${isLoginFieldEmpty && isValidEmail ? 'signup-auth-button cursor' : 'signup-auth-button'}`} >Login</button>
+      <button disabled={!isValidEmail || !isLoginFieldEmpty} onClick={userLogin} style={{ opacity: `${isLoginFieldEmpty && isValidEmail ? '1' : '0.3'}` }} className={`${isLoginFieldEmpty && isValidEmail ? 'signup-auth-button cursor' : 'signup-auth-button'}`} >Login</button>
 
       {isLoading ? (<div className='loading-icon-box'>
-        <img style={{ width: '30px', height: '30px' }} src={loadingIcon} />
+        <img style={{ width: '30px', height: '30px' }} src={loadingIcon} alt="Loading icon" />
       </div>) : ("")}
 
       <div>not registered ? <b onClick={() => changeLoginStatus('notregistered')} className='terms-conditions'>register</b> </div>
@@ -129,4 +158,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default SignIn;
