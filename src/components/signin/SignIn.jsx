@@ -64,7 +64,7 @@ const SignIn = () => {
     }
   }
 
-
+  //checking if the remember me status is changed:
   const checkRememberMeStatus = () => {
     const status = localStorage.getItem('rememberMeStatus');
     if (status === 'true') {
