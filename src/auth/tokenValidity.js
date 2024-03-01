@@ -19,14 +19,14 @@ export const checkTokenValidity = async (navigate) => {
       });
 
       if (!response.ok) {
+        localStorage.removeItem('loggedInEmail');
+        localStorage.removeItem('token');
         localStorage.removeItem('rememberMeStatus');
         Cookies.remove('loggedInUser');
-        localStorage.removeItem('token');
-      
         navigate('/')
-
       }
     } catch (err) {
+      
       console.log(err);
     }
   } else {

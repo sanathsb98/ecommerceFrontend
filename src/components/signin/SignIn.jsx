@@ -37,7 +37,9 @@ const SignIn = () => {
 
   useEffect(() => {
     autoLoginIfCookiesPresent();
-    setIsLoading(false)
+    checkRememberMeStatus();
+    setIsLoading(false);
+   
   }, [])
 
   useEffect(() => {
@@ -53,13 +55,26 @@ const SignIn = () => {
 
     localStorage.setItem('rememberMeStatus', JSON.stringify(newRememberMe));
 
-    Cookies.set('loggedInUser', loginInfo.email, { expires: 7 });
+    Cookies.set('loggedInUser', loginInfo.email);
+
     if (!newRememberMe) {
       // If remember me is unchecked, clear the email from local storage
       localStorage.removeItem('loggedInEmail');
       Cookies.remove('loggedInUser');
     }
   }
+
+
+  const checkRememberMeStatus = () => {
+    const status = localStorage.getItem('rememberMeStatus');
+    if (status === 'true') {
+      Cookies.set('loggedInUser', loginInfo.email);
+    }
+    if (status === 'false') {
+      Cookies.remove('loggedInUser');
+    }
+  }
+
 
   const rememberMeStatus = localStorage.getItem('rememberMeStatus')
   console.log(rememberMeStatus)
@@ -74,6 +89,9 @@ const SignIn = () => {
   const isLoginFieldEmpty = Object.values(loginInfo).every((value) => value !== '')
 
   const userLogin = async () => {
+
+    checkRememberMeStatus();
+
     const data = {
       email: loginInfo.email,
       password: loginInfo.password
@@ -109,6 +127,7 @@ const SignIn = () => {
           setIsLoading(false)
           navigate("/home")
         }
+        setIsLoading(false)
       }
     }
     catch (err) {
