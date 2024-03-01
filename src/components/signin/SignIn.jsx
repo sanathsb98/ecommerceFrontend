@@ -27,6 +27,8 @@ const SignIn = () => {
   const autoLoginIfCookiesPresent = () => {
     const loggedInUser = Cookies.get('loggedInUser');
     const token = localStorage.getItem('token');
+    console.log('cookies user', loggedInUser)
+    console.log('cookies token', token)
     if (loggedInUser && token) {
       dispatch(changeLoggedStatus({ logged: true }));
       navigate('/home');
@@ -50,7 +52,7 @@ const SignIn = () => {
     setRememberMe(newRememberMe);
 
     localStorage.setItem('rememberMeStatus', JSON.stringify(newRememberMe));
-    
+
     Cookies.set('loggedInUser', loginInfo.email, { expires: 7 });
     if (!newRememberMe) {
       // If remember me is unchecked, clear the email from local storage

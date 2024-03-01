@@ -1,6 +1,5 @@
 // tokenUtils.js
-
-
+import Cookies from "js-cookie";
 
 export const checkTokenValidity = async (navigate) => {
 
@@ -20,7 +19,10 @@ export const checkTokenValidity = async (navigate) => {
       });
 
       if (!response.ok) {
-        // Token is invalid or expired, redirect to sign-in page
+        localStorage.removeItem('rememberMeStatus');
+        Cookies.remove('loggedInUser');
+        localStorage.removeItem('token');
+      
         navigate('/')
 
       }
@@ -29,6 +31,7 @@ export const checkTokenValidity = async (navigate) => {
     }
   } else {
     // Token doesn't exist, redirect to sign-in page
+ 
     navigate('/')
   }
 };
