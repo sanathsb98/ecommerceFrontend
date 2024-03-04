@@ -24,6 +24,10 @@
 font-weight: 700;
 font-size: 30px;
 }
+.font-title-1{
+    font-weight: 400;
+    font-size: 20px;
+    }
 .terms-conditions{
     cursor: pointer;
 }
@@ -37,6 +41,21 @@ font-size: 30px;
     max-width: 450px;
     width: 100%;
 }
+::-webkit-scrollbar {
+    width: 2px; /* Width of the scrollbar */
+    height: 5px; /* Height of the scrollbar */
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent; /* Color of the scrollbar track */
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar handle */
+    border-radius: 5px; /* Border radius of the scrollbar handle */
+  }
 @media screen and (max-width : 530px) and (min-width:0px) {
     .font-title {
         

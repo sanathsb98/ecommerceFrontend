@@ -1,6 +1,210 @@
 .home-page{
-    color: black;
-    width: 100%;
     height: 100vh;
-    background-color: antiquewhite;
+
+  
+}
+.home-page-container{
+    height: 100vh;
+    width: 100%;
+    /* background-color: rgb(255, 255, 255); */
+    display: flex;
+    flex-direction: row;
+}
+.home-sidebar{
+    /* background-color: rgb(225, 225, 225); */
+    width: 100%;
+    max-width: 200px;
+    background-color: rgb(248 248 248);
+}
+.home-feedsection{
+    /* background-color: rgb(200, 200, 200); */
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+  
+
+}
+.home-feedposts-container{
+
+  
+    height: 100%;
+    overflow: scroll;
+display: flex;
+flex-direction: column;
+    /* background-color: aqua; */
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  
+  
+}
+.home-profilesection{
+    background-color: rgb(248 248 248);
+    width: 100%;
+    max-width: 300px;
+}
+.home-statusfeed-section{
+    background-color: rgb(248 248 248);
+    height: 120px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+
+ 
+}
+.home-feed-posts{
+    /* background-color: rgb(187, 177, 177); */
+    width: 100%;
+ max-width: 800px;
+    height: 800px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.user-story{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.status-circle{
+    width: 80px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+  height: 80px;
+    border-radius: 100px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    border: 5px solid rgb(255, 123, 123);
+ 
+}
+.status-image-box{
+    /* background-color: beige; */
+    position: absolute;
+    width: 60px;
+    border-radius: 100px;
+ display: flex;
+ justify-content: center;
+    height: 60px;
+}
+.story-image{
+    border-radius: 100px;
+}
+.home-sidebar{
+    display: flex;
+    flex-direction: column;
+}
+.home-sidebar-logo{
+    /* background-color: antiquewhite; */
+    height: 100%;
+    max-height: 120px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home-sidebar-contents{
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgb(187, 187, 187); */
+    height: 100%;
+    max-height: 350px;
+    padding: 20px;
+    gap: 18px;
+}
+.home-sidebar-tab{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    line-height: 16px;
+    gap: 8px;
+    cursor: pointer;
+}
+.name-and-profile{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+  
+}
+.feed-user-name{
+    font-size: 26px;
+    font-weight: 500;
+}
+.feed-post-separator{
+    font-size: 26px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+}
+.feed-post-time{
+    font-size: 20px;
+    font-weight: 500;
+}
+.home-feed-image-section{
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+   display: flex;
+   justify-content: center;
+    /* background-color: rgb(136, 139, 139); */
+    background-size: contain;
+}
+.homefeedimg{
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+}
+.likes-section{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+.home-like-count{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media screen and (max-width : 1300px) and (min-width:0px) {
+  
+    .home-feed-posts {
+        /* background-color: rgb(187, 177, 177); */
+      
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+   
+  
+}
+@media screen and (max-width : 1100px) and (min-width:0px) {
+  
+    .home-profilesection {
+       
+        max-width: 250px;
+    }
+  
+}
+@media screen and (max-width : 900px) and (min-width:0px) {
+  
+    .home-profilesection {
+       
+        max-width: 0px;
+    }
+  
 }
