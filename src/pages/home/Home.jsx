@@ -9,6 +9,8 @@ import searchicon from '/src/images/searchicon.png';
 import companylogo from '/src/images/companylogo.png';
 import storyframe from '/src/images/storyframe.png';
 import homefeedimg from '/src/images/homefeedimg.png';
+import homefeed2 from '/src/images/homefeed2.png';
+import moreicon from '/src/images/moreicon.png';
 
 
 const Home = () => {
@@ -82,14 +84,22 @@ const Home = () => {
 
             <div className='home-feed-posts'>
               <div className='name-and-profile'>
-                <div className='user-story'>
+
+                <div className='user-profile-icon'>
+
                   <div className='status-circle'>
                     <div className='status-image-box'>
                       <img className='story-image' src={storyframe} />
                     </div>
                   </div>
+                  <div className='feed-user-name'>testuser</div>
                 </div>
-                <div className='feed-user-name'>testuser</div>
+
+                <div className='moreicon'>
+                  <img src={moreicon}/>
+                </div>
+
+              
               </div>
               <div className='home-feed-image-section'>
                 <img className='homefeedimg' src={homefeedimg} />              </div>
@@ -121,17 +131,24 @@ const Home = () => {
 
             <div className='home-feed-posts'>
               <div className='name-and-profile'>
-                <div className='user-story'>
+
+                <div className='user-profile-icon'>
+
                   <div className='status-circle'>
                     <div className='status-image-box'>
                       <img className='story-image' src={storyframe} />
                     </div>
                   </div>
+                  <div className='feed-user-name'>testuser</div>
                 </div>
-                <div className='feed-user-name'>testuser</div>
+                <div className='moreicon'>
+                  <img src={moreicon}/>
+                </div>
+
+
               </div>
               <div className='home-feed-image-section'>
-                <img className='homefeedimg' src={homefeedimg} />              </div>
+                <img className='homefeedimg' src={homefeed2} />              </div>
 
               <div className='home-likes-shares'>
                 <div className='likes-section'>
