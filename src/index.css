@@ -56,6 +56,14 @@ font-size: 30px;
     background: #888; /* Color of the scrollbar handle */
     border-radius: 5px; /* Border radius of the scrollbar handle */
   }
+  @media screen and (max-width : 750px) and (min-width:0px) {
+    .container {
+     overflow: none;
+     justify-content: flex-start;
+  }
+    
+  }
+  
 @media screen and (max-width : 530px) and (min-width:0px) {
     .font-title {
         
