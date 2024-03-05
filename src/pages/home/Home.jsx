@@ -12,16 +12,21 @@ import homefeedimg from '/src/images/homefeedimg.png';
 import homefeed2 from '/src/images/homefeed2.png';
 import moreicon from '/src/images/moreicon.png';
 import logouticon from '/src/images/logout.png';
+import dummyprofile from '/src/images/dummyprofile.jpg';
 
 
 const Home = () => {
 
   const navigate = useNavigate()
   const containerRef = useRef(null);
+  const username =   localStorage.getItem('username')
+
+  const logoutUser = () =>{
+    localStorage.removeItem('token')
+    navigate("/")
+  }
 
  
-
-
   const handleWheelScroll = (e) => {
     e.preventDefault();
     const delta = e.deltaY;
@@ -66,7 +71,7 @@ const Home = () => {
               <div className='home-logo'><img src={searchicon} width="20px" height="20px" /></div>
               <div className='home-logo font-title-1'>Search</div>
             </div>
-            <div className='home-sidebar-tab'>
+            <div  onClick={()=>{logoutUser()}} className='home-sidebar-tab'>
               <div className='home-logo'><img src={logouticon} width="25px" height="25px" /></div>
               
               <div className='home-logo font-title-1'>Logout</div>
@@ -144,38 +149,7 @@ const Home = () => {
               </div>
               <div className='user-story-name'>itsdoggie</div>
           </div>
-          <div className='user-story'>
-              <div className='status-circle'>
-                <div className='status-image-box'>
-                  <img className='story-image' src={storyframe} />
-                </div>
-              </div>
-              <div className='user-story-name'>itsdoggie</div>
-          </div>
-          <div className='user-story'>
-              <div className='status-circle'>
-                <div className='status-image-box'>
-                  <img className='story-image' src={storyframe} />
-                </div>
-              </div>
-              <div className='user-story-name'>itsdoggie</div>
-          </div>
-          <div className='user-story'>
-              <div className='status-circle'>
-                <div className='status-image-box'>
-                  <img className='story-image' src={storyframe} />
-                </div>
-              </div>
-              <div className='user-story-name'>itsdoggie</div>
-          </div>
-          <div className='user-story'>
-              <div className='status-circle'>
-                <div className='status-image-box'>
-                  <img className='story-image' src={storyframe} />
-                </div>
-              </div>
-              <div className='user-story-name'>itsdoggie</div>
-          </div>
+       
 
 
 
@@ -303,10 +277,14 @@ const Home = () => {
            
               <div className='profile-circle '>
                 <div className='status-image-box'>
-                  <img className='story-image' src={storyframe} />
+                  <img className='story-image' src={dummyprofile} />
                 </div>
               </div>
-              <div className='user-story-name font-title-1'>j</div>
+              <div className='user-edit-section'>
+              <div className='user-story-name font-title-1'>{username}</div>
+              <div className='edit-btn'>Edit</div>
+              </div>
+             
             </div>
         
           </div>

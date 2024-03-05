@@ -15,6 +15,7 @@
     width: 100%;
     max-width: 200px;
     background-color: rgb(248 248 248);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .home-feedsection {
@@ -42,6 +43,7 @@
     background-color: rgb(248 248 248);
     width: 100%;
     max-width: 300px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .home-statusfeed-section {
@@ -58,6 +60,9 @@
     overflow-y: hidden;
     overflow-x: scroll;
     scroll-behavior: smooth;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    
 }
 .home-statusfeed-section::-webkit-scrollbar{
     width: 0px;
@@ -234,6 +239,11 @@
     align-items: center;
    
 }
+.edit-btn{
+    cursor: pointer;
+    color: blue;
+    font-size: 12px;
+}
 
 @media screen and (max-width : 1300px) and (min-width:0px) {
 
@@ -249,18 +259,18 @@
 
 }
 
+
 @media screen and (max-width : 1100px) and (min-width:0px) {
-
-    .home-profilesection {
-
-        max-width: 250px;
-    }
-
-}
-
-@media screen and (max-width : 900px) and (min-width:0px) {
     .home-profilesection {
         max-width: 0px;
+        display: none;
+    }
+    .home-feedposts-container{
+        margin-top: 140px;
+    }
+    .home-statusfeed-section{
+        position: fixed;
+        width: 100%;
     }
 }
 

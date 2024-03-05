@@ -117,8 +117,9 @@ const SignIn = () => {
       } else {
         // getting and setting the logged user deatils in a state:
         const loginDetails = await response.json()
+    
         setLoginStatus(loginDetails)
-        console.log("login details:", loginDetails)
+       
 
         //storing the token:
         localStorage.setItem('token', loginDetails.token)
@@ -126,6 +127,7 @@ const SignIn = () => {
         //if valid token in response navigate to home:
         if ('token' in loginDetails) {
           dispatch(changeLoggedStatus({ logged: true }))
+          localStorage.setItem('username',loginDetails.loginDetails.name)
           setIsLoading(false)
           navigate("/home")
         }
