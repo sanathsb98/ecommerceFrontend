@@ -23,6 +23,7 @@
     max-width: 1100px;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .home-feedposts-container {
@@ -45,7 +46,7 @@
 
 .home-statusfeed-section {
     background-color: rgb(248 248 248);
-    height: 120px;
+    height: 140px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -53,7 +54,17 @@
     padding: 10px 20px;
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: 13px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+.home-statusfeed-section::-webkit-scrollbar{
+    width: 0px;
+    height: 0px;
+}
+.home-statusfeed-content{
+    background-color: antiquewhite;
 }
 
 .home-feed-posts {

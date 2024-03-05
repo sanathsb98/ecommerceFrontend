@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useRef} from 'react';
 import '../home/Home.jsx';
 import '../home/Home.css';
 import {useNavigate} from "react-router-dom";
@@ -16,6 +16,17 @@ import moreicon from '/src/images/moreicon.png';
 const Home = () => {
 
   const navigate = useNavigate()
+  const containerRef = useRef(null);
+
+
+  const handleWheelScroll = (e) => {
+    e.preventDefault();
+    const delta = e.deltaY;
+    const scrollSpeed = 5; // Adjust scroll speed as needed
+    if (containerRef.current) {
+        containerRef.current.scrollLeft += delta * scrollSpeed;
+    }
+};
 
   useEffect(()=>{
     checkTokenValidity(navigate)
@@ -64,7 +75,7 @@ const Home = () => {
 
           <div className='home-feedsection'>
        
-          <div className='home-statusfeed-section'>
+          <div ref={containerRef} onWheel={handleWheelScroll}  className='home-statusfeed-section'>
             <div className='user-story'>
               <div className='status-circle'>
                 <div className='status-image-box'>
@@ -74,6 +85,86 @@ const Home = () => {
               <div className='user-story-name'>itsdoggie</div>
             </div>
             <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
+              <div className='status-circle'>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name'>itsdoggie</div>
+          </div>
+          <div className='user-story'>
               <div className='status-circle'>
                 <div className='status-image-box'>
                   <img className='story-image' src={storyframe} />
