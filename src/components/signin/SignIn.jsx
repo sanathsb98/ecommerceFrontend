@@ -107,6 +107,8 @@ const SignIn = () => {
         body: JSON.stringify(data)
       })
 
+      console.log(response)
+
       if (!response) {
         dispatch(changeLoggedStatus({ logged: false }))
         setIsLoading(false)

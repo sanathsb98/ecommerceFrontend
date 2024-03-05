@@ -11,12 +11,15 @@ import storyframe from '/src/images/storyframe.png';
 import homefeedimg from '/src/images/homefeedimg.png';
 import homefeed2 from '/src/images/homefeed2.png';
 import moreicon from '/src/images/moreicon.png';
+import logouticon from '/src/images/logout.png';
 
 
 const Home = () => {
 
   const navigate = useNavigate()
   const containerRef = useRef(null);
+
+ 
 
 
   const handleWheelScroll = (e) => {
@@ -64,8 +67,9 @@ const Home = () => {
               <div className='home-logo font-title-1'>Search</div>
             </div>
             <div className='home-sidebar-tab'>
-              <div className='home-logo'><img src={loveicon} width="20px" height="20px" /></div>
-              <div className='home-logo font-title-1'>Notifications</div>
+              <div className='home-logo'><img src={logouticon} width="25px" height="25px" /></div>
+              
+              <div className='home-logo font-title-1'>Logout</div>
             </div>
           
 
@@ -294,7 +298,18 @@ const Home = () => {
 
           </div>
 
-          <div className='home-profilesection'>homeprofile</div>
+          <div className='home-profilesection'>
+            <div className='userprofile'>
+           
+              <div className='profile-circle '>
+                <div className='status-image-box'>
+                  <img className='story-image' src={storyframe} />
+                </div>
+              </div>
+              <div className='user-story-name font-title-1'>j</div>
+            </div>
+        
+          </div>
 
 
         </div>
