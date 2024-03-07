@@ -48,7 +48,7 @@
 
 .home-statusfeed-section {
     background-color: rgb(248 248 248);
-    height: 140px;
+    height: 160px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -61,6 +61,7 @@
     overflow-x: scroll;
     scroll-behavior: smooth;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 5;
 
     
 }
@@ -244,6 +245,9 @@
     color: blue;
     font-size: 12px;
 }
+.like-btn{
+    cursor: pointer;
+}
 
 @media screen and (max-width : 1300px) and (min-width:0px) {
 
@@ -266,11 +270,13 @@
         display: none;
     }
     .home-feedposts-container{
-        margin-top: 140px;
+        margin-top: 110px;
+       
     }
     .home-statusfeed-section{
         position: fixed;
         width: 100%;
+        height: 140px;
     }
 }
 
@@ -307,6 +313,7 @@
     .home-feedposts-container {
         overflow: scroll;
         padding: 5px;
+        margin-bottom: 80px;
     }
 
     .home-feed-posts {
@@ -341,5 +348,9 @@
 
     .feed-user-name {
         font-size: 18px;
+    }
+    .home-statusfeed-section{
+      
+        height: 110px;
     }
 }

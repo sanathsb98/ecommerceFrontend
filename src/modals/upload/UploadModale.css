@@ -1,0 +1,82 @@
+.upload-post-content{
+    width: 100%;
+    max-width: 460px;
+    background-color: white;
+    height: 580px;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 22px;
+    position: relative;
+}
+.close-icon {
+    position: absolute;
+   right: 0;
+    top: 0;
+    padding: 20px;
+    cursor: pointer;
+}
+.upload-post-title{
+    font-size: 26px;
+    font-weight: 600;
+}
+.upload-post-image{
+ 
+    width: 100%;
+    max-width: 370px;
+    height: 200px;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+.upload-post-description{
+    width: 100%;
+    max-width: 370px;
+}
+input.upload-post-input {
+    width: 100%;
+    border: 1px solid gray;
+    outline: none;
+    font-size: 18px;
+}
+textarea{
+    border: 1px solid #e7e7e7;
+    outline: none;
+    resize: none;
+    width: 100%;
+    max-width: 370px;
+    height: 100px;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 18px;
+}
+.upload-post-button{
+    background-color: #1682d8;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    width: 100%;
+    max-width: 370px;
+    border-radius: 12px;
+text-align: center;
+cursor: pointer;
+}
+.drag-drop-bold{
+    font-weight: 500;
+}
+.supported-formats{
+  color: gray;
+}
+.browse{
+    color: #1682d8;;
+    cursor: pointer;
+}
