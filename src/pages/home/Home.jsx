@@ -26,6 +26,9 @@ const Home = () => {
   const navigate = useNavigate()
   const[feedData,setFeedData] = useState([{
     _id : '',
+    name : '',
+    username : '',
+    userprofilepic : '',
     userid : '',
     image : '',
     likes : 0,
@@ -214,7 +217,7 @@ const Home = () => {
                       <img className='story-image' src={storyframe} />
                     </div>
                   </div>
-                  <div className='feed-user-name'>testuser</div>
+                  <div className='feed-user-name'>{item.name}</div>
                 </div>
 
                 <div className='moreicon'>

@@ -50,9 +50,12 @@ const UploadModale = () => {
     console.log('posting')
 
     const userid = localStorage.getItem('userid')
+    const username = localStorage.getItem('username')
 
     const data = {
       userid : userid,
+      name : username,
+      username : 'default',
       image : uploadedImage,
       caption : imageCaptions,
       likes : 0
