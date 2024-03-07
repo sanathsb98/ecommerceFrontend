@@ -120,8 +120,10 @@ const SignIn = () => {
     
         setLoginStatus(loginDetails)
        
+       
 
-        //storing the token:
+        //storing the token and userid:
+        localStorage.setItem('userid', loginDetails.loginDetails._id)
         localStorage.setItem('token', loginDetails.token)
 
         //if valid token in response navigate to home:

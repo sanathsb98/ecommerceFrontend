@@ -6,6 +6,7 @@ import { uploadModaleStatus } from '../../features/modalSlice';
 
 const UploadModale = () => {
 
+
  const[uploadedImage,setUploadedImage] = useState(null)
  const[imageCaptions,setImageCaptions] = useState("")
 
@@ -44,6 +45,37 @@ const UploadModale = () => {
   
   }
 
+  const postImage = async() => {
+
+    console.log('posting')
+
+    const userid = localStorage.getItem('userid')
+
+    const data = {
+      userid : userid,
+      image : uploadedImage,
+      caption : imageCaptions,
+      likes : 0
+    }
+
+    try{
+      const postdata = await fetch('https://ecommerce-backend-eight-azure.vercel.app/api/postimage', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      }).then((res)=>console.log(res))
+      console.log(postdata)
+    }catch(err){
+      console.log(err)
+    }
+
+  
+
+    dispatch(uploadModaleStatus({ status: true }))
+  }
+
   const dispatch = useDispatch()
   return (
     <div className='modale-container'>
@@ -66,7 +98,7 @@ const UploadModale = () => {
         <div className='upload-post-description'>
           <textarea onChange={(e)=>{setImageCaptions(e.target.value)}} className='upload-post-input' type='text' placeholder='add a caption' />
         </div>
-        <div onClick={() => { dispatch(uploadModaleStatus({ status: true })) }} className='upload-post-button'>Upload</div>
+        <div onClick={()=>{postImage()}} className='upload-post-button'>Upload</div>
       </div>
     </div>
   )
