@@ -24,16 +24,7 @@ import { uploadModaleStatus } from '../../features/modalSlice.js';
 const Home = () => {
 
   const navigate = useNavigate()
-  const[feedData,setFeedData] = useState([{
-    _id : '',
-    name : '',
-    username : '',
-    userprofilepic : '',
-    userid : '',
-    image : '',
-    likes : 0,
-    caption : ''
-  }])
+  const[feedData,setFeedData] = useState([])
   const isLogModaleClicked = useSelector((store) => store.modaleStatus.logoutModale)
   const isUploadClicked = useSelector((store) => store.modaleStatus.uploadModale)
   const dispatch = useDispatch()
