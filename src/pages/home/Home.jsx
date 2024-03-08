@@ -23,6 +23,9 @@ import { uploadModaleStatus } from '../../features/modalSlice.js';
 
 const Home = () => {
 
+  let currentPage = 1
+  const postsPerPage = 5
+
   const navigate = useNavigate()
   const[feedData,setFeedData] = useState([])
   const isLogModaleClicked = useSelector((store) => store.modaleStatus.logoutModale)
@@ -34,7 +37,7 @@ const Home = () => {
 
   const getFeedData = async () => {
     try {
-      const response = await fetch("https://ecommerce-backend-eight-azure.vercel.app/api/allposts", {
+      const response = await fetch(`https://ecommerce-backend-eight-azure.vercel.app/api/allposts?page=${currentPage}&perPage=${postsPerPage}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +51,7 @@ const Home = () => {
       const feedInfo = await response.json();
       const posts = feedInfo.posts;
       if (Array.isArray(posts)) { // Check if the fetched data is an array
-        setFeedData(posts.reverse());
+        setFeedData(posts);
       } else {
         console.error('Fetched data is not an array:', feedInfo);
       }
@@ -77,6 +80,7 @@ const Home = () => {
     checkTokenValidity(navigate)
     getFeedData()
   }, [])
+
 
   console.log(feedData)
 
