@@ -24,7 +24,7 @@ import { uploadModaleStatus } from '../../features/modalSlice.js';
 const Home = () => {
 
   let currentPage = 1
-  const postsPerPage = 5
+  const postsPerPage = 4
 
   const navigate = useNavigate()
   const[feedData,setFeedData] = useState([])
@@ -51,7 +51,7 @@ const Home = () => {
       const feedInfo = await response.json();
       const posts = feedInfo.posts;
       if (Array.isArray(posts)) { // Check if the fetched data is an array
-        setFeedData(posts);
+        setFeedData([...feedData,...posts]);
       } else {
         console.error('Fetched data is not an array:', feedInfo);
       }
@@ -73,12 +73,20 @@ const Home = () => {
     }
   };
 
+  const handleFeedScroll = () => {
+ 
+    if (containerRef.current.scrollTop + containerRef.current.clientHeight >= containerRef.current.scrollHeight) {
+      currentPage++; // Increment page number
+      getFeedData(currentPage); // Fetch more posts
+    }
+  };
+
   useEffect(() => {
    
     dispatch(uploadModaleStatus({ status: false }))
     dispatch(logoutModaleStatus({ status: false }))
     checkTokenValidity(navigate)
-    getFeedData()
+    getFeedData(currentPage)
   }, [])
 
 
@@ -126,7 +134,7 @@ const Home = () => {
 
         <div className='home-feedsection'>
 
-          <div ref={containerRef} onWheel={handleWheelScroll} className='home-statusfeed-section'>
+          <div  onWheel={handleWheelScroll} className='home-statusfeed-section'>
             <div className='user-story'>
               <div className='status-circle'>
                 <div className='status-image-box'>
@@ -197,7 +205,7 @@ const Home = () => {
 
           </div>
 
-          <div className='home-feedposts-container'>
+          <div onScroll={handleFeedScroll} ref={containerRef} className='home-feedposts-container'>
  
           
             {feedData.map((item)=>{
