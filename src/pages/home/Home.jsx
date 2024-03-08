@@ -32,10 +32,27 @@ const Home = () => {
   const isUploadClicked = useSelector((store) => store.modaleStatus.uploadModale)
   const dispatch = useDispatch()
   const containerRef = useRef(null);
+  const feedRef = useRef(null);
   const username = localStorage.getItem('username')
 
+  const handleFeedScroll = () => {
+    if (feedRef && feedRef.current) {
+      const { scrollTop, clientHeight, scrollHeight } = feedRef.current;
+      console.log("scrollTop:", scrollTop);
+      console.log("clientHeight:", clientHeight);
+      console.log("scrollHeight:", scrollHeight);
+      if (scrollTop + clientHeight + 10 >= scrollHeight) { // Adding a threshold of 10 pixels
+        console.log('Scrolled to bottom');
+        currentPage++; // Increment page number
+        getFeedData(currentPage); // Fetch more posts
+      }
+    }
+  };
+  
+  
 
-  const getFeedData = async () => {
+
+  const getFeedData = async (currentPage) => {
     try {
       const response = await fetch(`https://ecommerce-backend-eight-azure.vercel.app/api/allposts?page=${currentPage}&perPage=${postsPerPage}`, {
         method: 'GET',
@@ -73,13 +90,7 @@ const Home = () => {
     }
   };
 
-  const handleFeedScroll = () => {
- 
-    if (containerRef.current.scrollTop + containerRef.current.clientHeight >= containerRef.current.scrollHeight) {
-      currentPage++; // Increment page number
-      getFeedData(currentPage); // Fetch more posts
-    }
-  };
+  
 
   useEffect(() => {
    
@@ -205,7 +216,7 @@ const Home = () => {
 
           </div>
 
-          <div onScroll={handleFeedScroll} ref={containerRef} className='home-feedposts-container'>
+          <div onScroll={handleFeedScroll} ref={feedRef} className='home-feedposts-container'>
  
           
             {feedData.map((item)=>{
